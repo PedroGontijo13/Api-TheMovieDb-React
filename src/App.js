@@ -1,7 +1,6 @@
 import { Container } from "@material-ui/core"
 import FormSearch from "./components/FormSearch"
 import HeaderLenta from "./components/headerLenta"
-import ApiCard from "./components/apiCard"; 
 
 function App() {
   return (
@@ -9,7 +8,6 @@ function App() {
       <Container>
         <HeaderLenta/>
         <FormSearch onFormSubmit={onFormSubmit}/>
-        <ApiCard data={onFormSubmit}/>
       </Container>
     </>
   );
