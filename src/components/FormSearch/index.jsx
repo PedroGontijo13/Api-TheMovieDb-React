@@ -1,6 +1,7 @@
 import { Container, TextField, Typography, Button } from "@material-ui/core"
 import { useState } from "react";
 import axios from 'axios';
+import Box from '@material-ui/core/Box';
 
 function FormSearch({onFormSubmit}) {
 
@@ -10,18 +11,20 @@ function FormSearch({onFormSubmit}) {
     const [joke, setJoke] = useState("")
   
     const getJoke = (data) => {
-      axios.get("https://api.github.com/users/" + (data.query)).then((response) => {
+      axios.get("https://api.themoviedb.org/3/search/movie?api_key=0f3fb72a7a6f467451fc6b155705be3d&query=" + (data.query)).then((response) => {
         console.log(response)
         return (
           setJoke(
           <>
-          <div className="card">
-            <div className="container">
-              <img src={response.data.avatar_url} alt="Avatar" />
-              <h4><b>{response.data.name}</b></h4>
-              <p>{response.data.bio}</p>
-            </div>
-          </div>
+            <Container spacing="margin-top" maxWidth="sm">
+                <Typography component="div">
+                    <Box mt="2rem">
+                        <img src={"https://image.tmdb.org/t/p/w500/" + (response.data.results[0].backdrop_path)} alt="background-image" />
+                        <h4><b>{response.data.results[0].original_title}</b></h4>
+                        <p>{response.data.results[0].overview}</p>
+                    </Box>
+                </Typography>
+            </Container>
           </>)
         )
       })
@@ -40,7 +43,7 @@ function FormSearch({onFormSubmit}) {
                         <TextField value={query} onChange={event => {
                             setQuery(event.target.value)
                         }} fullWidth margin="normal" id="query" label="Search" variant="outlined" />
-                        <Button size="large" type="submit" variant="contained" color="primary">Enviar</Button>
+                        <Button margin="normal" size="large" type="submit" variant="contained" color="primary">Enviar</Button>
                     </Typography>
                 </form>
                 <Typography component="div" align="center">
