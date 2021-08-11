@@ -18,7 +18,7 @@ function FormSearch({onFormSubmit}) {
           <>
             <Container spacing="margin-top" maxWidth="sm">
                 <Typography component="div">
-                    <Box mt="2rem">
+                    <Box mt="1rem">
                         <img src={"https://image.tmdb.org/t/p/w500/" + (response.data.results[0].backdrop_path)} alt="background-image" />
                         <h4><b>{response.data.results[0].original_title}</b></h4>
                         <p>{response.data.results[0].overview}</p>
@@ -35,7 +35,6 @@ function FormSearch({onFormSubmit}) {
             <Container maxWidth="sm">
                 <form onSubmit={(event) => {
                     event.preventDefault()
-                    alert("Enviado!")
                     onFormSubmit({query})
                     getJoke({query})
                 }}>
