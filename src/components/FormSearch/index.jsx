@@ -8,13 +8,13 @@ function FormSearch({onFormSubmit}) {
     const [query, setQuery] = useState("")
 
     
-    const [joke, setJoke] = useState("")
+    const [movie, setMovie] = useState("")
   
-    const getJoke = (data) => {
+    const getmovie = (data) => {
       axios.get("https://api.themoviedb.org/3/search/movie?api_key=0f3fb72a7a6f467451fc6b155705be3d&query=" + (data.query)).then((response) => {
         console.log(response)
         return (
-          setJoke(
+          setMovie(
           <>
             <Container spacing="margin-top" maxWidth="sm">
                 <Typography component="div">
@@ -36,7 +36,7 @@ function FormSearch({onFormSubmit}) {
                 <form onSubmit={(event) => {
                     event.preventDefault()
                     onFormSubmit({query})
-                    getJoke({query})
+                    getmovie({query})
                 }}>
                     <Typography component="div" align="center">
                         <TextField value={query} onChange={event => {
@@ -46,7 +46,7 @@ function FormSearch({onFormSubmit}) {
                     </Typography>
                 </form>
                 <Typography component="div" align="center">
-                    {joke}
+                    {movie}
                 </Typography>
             </Container>
         </>
